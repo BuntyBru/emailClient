@@ -22,12 +22,16 @@ body {
 
 #side {
   flex: 1;
+  background: #192a40;
 }
 
 #mid {
   flex: 2;
+  background: #ffffff;
+  border-right: 1px solid #f1f1f1;
 }
 
 #right {
   flex: 3;
+  background: #ffffff;
 }
