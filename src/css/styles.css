@@ -1,3 +1,5 @@
+@import "../../node_modules/@fortawesome/fontawesome-free/css/all.css";
+
 body {
   background: #090f13;
   margin: 0px;
@@ -23,6 +25,9 @@ body {
 #side {
   flex: 1;
   background: #192a40;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
 }
 
 #mid {
@@ -34,4 +39,32 @@ body {
 #right {
   flex: 3;
   background: #ffffff;
+}
+
+#side ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li {
+  display: flex;
+  margin-bottom: 1rem;
+  padding: 10px 20px;
+}
+
+li i {
+  color: #8d9097;
+  font-size: 20px;
+  flex: 1;
+}
+li p {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  color: #77808e;
+  flex: 1;
+}
+
+li .entry {
+  flex: 3;
+  text-align: center;
 }
