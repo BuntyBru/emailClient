@@ -1,0 +1,33 @@
+body {
+  background: #090f13;
+  margin: 0px;
+}
+
+.main-parent {
+  position: absolute;
+  z-index: 200;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  left: 0;
+  right: 0;
+  top: 19px;
+  width: 1396px;
+  height: calc(100% - 38px);
+  background: aliceblue;
+  margin: 0 auto;
+}
+
+#side {
+  flex: 1;
+}
+
+#mid {
+  flex: 2;
+}
+
+#right {
+  flex: 3;
+}
