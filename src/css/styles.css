@@ -3,6 +3,7 @@
 body {
   background: #203e52;
   margin: 0px;
+  font-family: "Ubuntu", sans-serif;
 }
 
 .main-parent {
@@ -24,7 +25,7 @@ body {
 #side {
   flex: 1;
   background: #192a40;
-  font-family: "Ubuntu", sans-serif;
+
   font-weight: 700;
   font-size: 14px;
 }
@@ -137,4 +138,70 @@ ul li:hover {
 .email-item p {
   margin-bottom: 0px;
   margin-top: 0px;
+}
+
+.tag-holder {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.tag-p-imp {
+  width: 10px;
+  height: 10px;
+  margin-bottom: 0px;
+  background-color: #33b587;
+}
+
+.tag-p-book {
+  width: 10px;
+  height: 10px;
+  margin-bottom: 0px;
+  background-color: #09aeec;
+}
+
+.tag-p-work {
+  width: 10px;
+  height: 10px;
+  margin-bottom: 0px;
+  background-color: #9450af;
+}
+.tag-p-personal {
+  width: 10px;
+  height: 10px;
+  margin-bottom: 0px;
+  background-color: #feae02;
+}
+
+.tag-p-newsletter {
+  width: 10px;
+  height: 10px;
+  margin-bottom: 0px;
+  background-color: #e44235;
+}
+
+.tag-p-secret {
+  width: 10px;
+  height: 10px;
+  margin-bottom: 0px;
+  background-color: #ec185a;
+}
+
+.email-item .creator {
+  font-size: 18px;
+  font-weight: 600;
+  color: #4f535e;
+}
+
+.email-item .subject {
+  font-size: 15px;
+  font-weight: 600;
+  color: #3a94cd;
+  margin-bottom: 1rem;
+}
+
+.email-item .content {
+  font-size: 14px;
+
+  color: #9d9d9d;
+  margin-bottom: 1rem;
 }
