@@ -81,7 +81,7 @@ ul li {
 
 li i {
   color: #8d9097;
-  font-size: 20px;
+  font-size: 16px;
   flex: 1;
 }
 li p {
@@ -123,4 +123,18 @@ li .entry span {
 
 ul li:hover {
   background: #192231;
+}
+
+#mid {
+  padding-top: 30px;
+}
+
+.email-item {
+  border-bottom: 1px solid #f1f1f1;
+  padding: 20px;
+}
+
+.email-item p {
+  margin-bottom: 0px;
+  margin-top: 0px;
 }
