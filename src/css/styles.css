@@ -1,7 +1,7 @@
 @import "../../node_modules/@fortawesome/fontawesome-free/css/all.css";
 
 body {
-  background: #090f13;
+  background: #203e52;
   margin: 0px;
 }
 
@@ -12,7 +12,6 @@ body {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  pointer-events: none;
   left: 0;
   right: 0;
   top: 19px;
@@ -30,6 +29,33 @@ body {
   font-size: 14px;
 }
 
+.btn-holder {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  margin-top: 6rem;
+  margin-bottom: 4rem;
+}
+
+#side button {
+  width: 9rem;
+  padding: 11px;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: white;
+  border: none;
+  background: #fe4a3e;
+  cursor: pointer;
+  outline: none;
+}
+.fa-edit {
+  position: absolute;
+  left: 10rem;
+  top: 8px;
+  font-size: 20px;
+  color: white;
+}
 #mid {
   flex: 2;
   background: #ffffff;
@@ -50,6 +76,7 @@ ul li {
   display: flex;
   margin-bottom: 1rem;
   padding: 10px 20px;
+  cursor: pointer;
 }
 
 li i {
@@ -66,5 +93,34 @@ li p {
 
 li .entry {
   flex: 3;
-  text-align: center;
+  text-align: end;
+}
+
+li .entry span {
+  padding: 6px;
+  background: #2b3443;
+  height: 10px;
+}
+
+.list-two {
+  margin-top: 3rem;
+}
+
+.list-two p {
+  flex: 4;
+}
+
+.list-two .pallete {
+  flex: 1;
+}
+
+.list-two .pallete p {
+  width: 15px;
+  height: 15px;
+  margin-bottom: 0px;
+  border-radius: 100%;
+}
+
+ul li:hover {
+  background: #192231;
 }
