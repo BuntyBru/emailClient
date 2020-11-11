@@ -128,11 +128,14 @@ ul li:hover {
 
 #mid {
   padding-top: 30px;
+  overflow: auto;
 }
 
 .email-item {
   border-bottom: 1px solid #f1f1f1;
   padding: 20px;
+  padding-right: 40px;
+  cursor: pointer;
 }
 
 .email-item p {
@@ -204,4 +207,9 @@ ul li:hover {
 
   color: #9d9d9d;
   margin-bottom: 1rem;
+}
+
+.email-item:hover {
+  background-color: #f4f4f499;
+  cursor: pointer;
 }

@@ -37,7 +37,9 @@ const emailList=[{
     tag:['newsletter'],
     date:'22 Jan 2020',
     sendList:['shawn', 'michael']
-}]
+},
+]
+
 
 
 //classes
@@ -61,7 +63,10 @@ class email {
        {
            emailList.forEach(x => {
                let item = document.createElement('div');
+               
                item.classList='email-item'
+               let i = 'item-'+ x.id 
+               item.classList.add(i)
                item.innerHTML = `
                <div class='tag-holder'>
 
@@ -121,5 +126,9 @@ let initialize = () => {
     email.showEmails()
 
 }
+
+emailListUI.addEventListener('click',(event)=>{
+  
+})
 
 initialize()
