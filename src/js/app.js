@@ -13,7 +13,8 @@ let ID = function () {
 const mainParent = document.querySelector('.main-parent');
 const emailListUI = document.querySelector('#mid');
 const emailShowUI = document.querySelector('#right')
-const composeButton = document.querySelector('.compose-btn')
+const composeButton = document.querySelector('.compose-btn');
+
 
 
 const emailList=[{
@@ -45,10 +46,12 @@ const emailList=[{
 },
 ]
 
+const sentEmail=[];
+
 
 
 //classes
-class email {
+class Email {
 
     constructor(id,creator, subject, content,tag,date,sendList)
     {
@@ -57,7 +60,7 @@ class email {
         this.subject = subject;
         this.content = content;
         this.tag = tag;
-        this.date = data,
+        this.date = date,
         this.sendList = sendList
     }
 
@@ -119,18 +122,29 @@ class email {
            })
        }
     }
+
+   
 }
+
+
 
 
 //functions
 
+let addEmail = (id,creator, subject, content,tag,date,sendList) => {
+let newEmail = new Email(id,creator, subject, content,tag,date,sendList);
+sentEmail.push(newEmail);
+
+console.log(sentEmail);
+}
 
 
 let initialize = () => {
     //set up maillist
-    email.showEmails()
+    Email.showEmails()
 
 }
+
 
 let showMailFull = (item) => {
 
@@ -176,19 +190,52 @@ composeButton.addEventListener('click',()=>{
 
     modal.innerHTML = `
     <div class='content'>
-    compose form
+
+    <div class='form-parent'>
+
+
+    <input type="text" placeholder="To" id="to"/>
+
+    <input type="text" placeholder="Subject" id="subject" />
+
+    <textarea rows="20" cols="50" id='txt-area'>
+    </textarea>
+
+
+    <button class='send-btn'>Send</button>
+    </div>
+
+    
     </div>
     `;
 
     mainParent.append(modal)
 
     modal.addEventListener('click',(event)=>{
-        console.log(event.target.parentElement)
         if(event.target.parentElement.className == 'main-parent')
         {
            modal.remove()
         }
     })
+
+    modal.querySelector('.send-btn').addEventListener('click',()=>{
+        let name = modal.querySelector('#to').value;
+        let subject = modal.querySelector('#subject').value;
+        let txtarea = modal.querySelector('#txt-area').value;
+
+
+        if(name.trim() !== "" || subject.trim() !== "" || txtarea.trim() !== "" )
+        {
+            let sendList = name.split(',')
+            addEmail(ID(),'Bunty', subject, txtarea,[],new Date(),sendList);
+        }
+
+        
+
+    
+    })
+
+
 
 
 })
