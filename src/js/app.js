@@ -10,9 +10,14 @@ let ID = function () {
   };
 
 //variables
+const mainParent = document.querySelector('.main-parent');
 const emailListUI = document.querySelector('#mid');
+const emailShowUI = document.querySelector('#right')
+const composeButton = document.querySelector('.compose-btn')
+
+
 const emailList=[{
-    id:ID(),
+    id:'one',
     creator:'John',
     subject:'Need to meet you',
     content:'Hey bud, would need to meet you tomorrow, Would that be possible, Please let me know about it mate',
@@ -21,7 +26,7 @@ const emailList=[{
     sendList:['shawn', 'michael']
 },
 {
-    id:ID(),
+    id:'two',
     creator:'Doe',
     subject:'Meeting fixed',
     content:'Are we having a google hangout meeting or zoom ?',
@@ -30,7 +35,7 @@ const emailList=[{
     sendList:['shawn', 'michael']
 },
 {
-    id:ID(),
+    id:'three',
     creator:'Dravid',
     subject:'Wont be able to come',
     content:'Sorry mate, I have some work tomorrow, Can we have a meeting later on this week',
@@ -72,9 +77,9 @@ class email {
 
                </div>
 
-               <p class='creator'>${x.creator}</p>
-               <p class='subject'>${x.subject}</p>
-               <p class='content'>${x.content}</p>
+               <p>${x.creator}</p>
+               <p>${x.subject}</p>
+               <p>${x.content}</p>
                `;
 
                if(x.tag.length>0)
@@ -127,8 +132,66 @@ let initialize = () => {
 
 }
 
+let showMailFull = (item) => {
+
+    emailShowUI.removeChild(emailShowUI.firstChild);
+
+    let t = document.createElement('div');
+
+    t.innerHTML = `
+    
+    <div>
+    Hello ${item.id}
+
+    </div>`
+
+    emailShowUI.append(t)    
+
+}
+
 emailListUI.addEventListener('click',(event)=>{
-  
+  let t = event.target.parentElement.classList;
+
+  if(t[1])
+  {
+    let id = t[1].split('-')[1];
+
+    emailList.forEach(x => {
+        if(x.id == id)
+        {
+           showMailFull(x)
+        }
+        
+    }) 
+  }
 })
+
+
+composeButton.addEventListener('click',()=>{
+    console.log("open a modal")
+
+    let modal = document.createElement('div');
+    modal.className='my-modal'
+
+
+    modal.innerHTML = `
+    <div class='content'>
+    compose form
+    </div>
+    `;
+
+    mainParent.append(modal)
+
+    modal.addEventListener('click',(event)=>{
+        console.log(event.target.parentElement)
+        if(event.target.parentElement.className == 'main-parent')
+        {
+           modal.remove()
+        }
+    })
+
+
+})
+
 
 initialize()
