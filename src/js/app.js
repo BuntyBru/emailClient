@@ -23,8 +23,6 @@ const draftEntry = side.querySelector('.draft-entry');
 const sentEntry = side.querySelector('.sent-entry');
 const trashEntry = side.querySelector('.trash-entry');
 
-
-
 const emailList=[{
     id:'one',
     creator:'John',
@@ -75,8 +73,12 @@ class Email {
     }
 
 
-    static showEmails()
+    static showEmails(emailList)
     {
+        while (emailListUI.firstChild) {
+            emailListUI.removeChild(emailListUI.firstChild);
+        }
+      
        if(emailList.length > 0)
        {
            emailList.forEach(x => {
@@ -128,9 +130,27 @@ class Email {
                    }
                
                }
+
+          
                emailListUI.append(item)
            })
        }
+
+
+       else
+       {
+           let noData = document.createElement('div');
+
+           noData.classList.add('no-data-element');
+
+           noData.innerHTML = `
+           <i class="fas fa-exclamation-triangle"></i>
+           <p>No emails here at this moment
+           `;
+           emailListUI.append(noData)
+       }
+
+      
     }
 
    
@@ -152,7 +172,7 @@ console.log(listName);
 
 let initialize = () => {
     //set up maillist
-    Email.showEmails();
+    Email.showEmails(emailList);
     countManager('inboxList');
     countManager('sentList');
     countManager('draftList');
@@ -332,6 +352,52 @@ function formChecker(myModal,listName,countListName)
         myModal.remove();
     }
 }
+
+
+
+//click function for left bar
+
+let listOneLi = side.querySelectorAll('.list-one li')
+listOneLi.forEach(li => {
+
+   
+    li.addEventListener('click', (event) => { 
+        listOneLi.forEach(x => x.classList.remove('active-li'))
+      switch(event.target.className){
+  
+        case 'inbox':
+            Email.showEmails(emailList);
+            event.target.classList.add('active-li');
+            break;
+        
+        case 'draft':
+            Email.showEmails(draftEmail);
+         
+            event.target.classList.add('active-li');
+            break;
+
+        case 'sent':
+            Email.showEmails(sentEmail);
+           
+            event.target.classList.add('active-li');
+            break;
+        
+        case 'trash':
+            Email.showEmails(trashEmail);
+           
+            event.target.classList.add('active-li');
+            break;
+              
+      }
+      
+  
+  });
+
+  
+  })
+
+
+
 
 
 initialize()

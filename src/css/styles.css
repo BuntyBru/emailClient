@@ -85,23 +85,27 @@ li i {
   color: #8d9097;
   font-size: 16px;
   flex: 1;
+  pointer-events: none;
 }
 li p {
   margin-top: 0px;
   margin-bottom: 0px;
   color: #77808e;
   flex: 1;
+  pointer-events: none;
 }
 
 li .entry {
   flex: 3;
   text-align: end;
+  pointer-events: none;
 }
 
 li .entry span {
   padding: 6px;
   background: #2b3443;
   height: 10px;
+  pointer-events: none;
 }
 
 .list-two {
@@ -109,7 +113,7 @@ li .entry span {
 }
 
 .list-two p {
-  flex: 4;
+  flex: 1;
 }
 
 .list-two .pallete {
@@ -123,10 +127,17 @@ li .entry span {
   border-radius: 100%;
 }
 
+.list-two .entry {
+  flex: 3;
+}
+
 ul li:hover {
   background: #192231;
 }
 
+.active-li {
+  background: #192231;
+}
 #mid {
   padding-top: 30px;
   overflow: auto;
@@ -295,4 +306,25 @@ ul li:hover {
   to {
     transform: translateY(0);
   }
+}
+
+.no-data-element {
+  padding: 20px;
+  text-align: center;
+  background: white;
+  width: 80%;
+  margin: 0 auto;
+  box-shadow: -1px 3px 5px 1px rgba(0, 0, 0, 0.22);
+}
+
+.no-data-element i {
+  font-size: 24px;
+  color: #fe4a3e;
+}
+
+.no-data-element {
+  margin-top: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #77808e;
 }
