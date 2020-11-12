@@ -15,6 +15,7 @@ const emailListUI = document.querySelector('#mid');
 const emailShowUI = document.querySelector('#right')
 const composeButton = document.querySelector('.compose-btn');
 
+
 const side = document.querySelector('#side');
 
 const inboxEntry = side.querySelector('.inbox-entry');
@@ -140,11 +141,12 @@ class Email {
 
 //functions
 
-let addEmail = (id,creator, subject, content,tag,date,sendList) => {
+let addEmail = (id,creator, subject, content,tag,date,sendList ,listName, countName) => {
 let newEmail = new Email(id,creator, subject, content,tag,date,sendList);
-sentEmail.push(newEmail);
+listName.push(newEmail);
+countManager(countName);
 
-console.log(sentEmail);
+console.log(listName);
 }
 
 
@@ -279,8 +281,13 @@ composeButton.addEventListener('click',()=>{
     <textarea rows="20" cols="50" id='txt-area'>
     </textarea>
 
-
+    <div class='btn-holder-modal'>
     <button class='send-btn'>Send</button>
+
+    <button class='del-btn'> <i class="fa fa-trash" aria-hidden="true"></i></button>
+    </div>
+   
+
     </div>
 
     
@@ -292,35 +299,39 @@ composeButton.addEventListener('click',()=>{
     modal.addEventListener('click',(event)=>{
         if(event.target.parentElement.className == 'main-parent')
         {
-           modal.remove()
+          formChecker(modal,draftEmail,'draftList')
+          modal.remove()
         }
     })
 
     modal.querySelector('.send-btn').addEventListener('click',()=>{
-        let name = modal.querySelector('#to').value;
-        let subject = modal.querySelector('#subject').value;
-        let txtarea = modal.querySelector('#txt-area').value;
+        formChecker(modal,sentEmail,'sentList')
+    })
 
-        console.log("====>",txtarea.trim().length , subject.trim().length )
+    modal.querySelector('.del-btn').addEventListener('click',()=>{
 
-
-        if(name.trim().length !== 0  && subject.trim().length !== 0 && txtarea.trim().length !== 0 )
-        {
-            let sendList = name.split(',')
-            addEmail(ID(),'Bunty', subject, txtarea,[],new Date(),sendList);
-            countManager('sentList');
-            modal.remove();
-        }
-
-        
-
-    
+        modal.remove()
     })
 
 
 
 
 })
+
+function formChecker(myModal,listName,countListName)
+{
+    let name = myModal.querySelector('#to').value;
+    let subject = myModal.querySelector('#subject').value;
+    let txtarea = myModal.querySelector('#txt-area').value;
+    
+
+    if(name.trim().length !== 0  && subject.trim().length !== 0 && txtarea.trim().length !== 0 )
+    {
+        let sendList = name.split(',')
+        addEmail(ID(),'Bunty', subject, txtarea,[],new Date(),sendList,listName,countListName);
+        myModal.remove();
+    }
+}
 
 
 initialize()

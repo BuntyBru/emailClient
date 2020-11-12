@@ -277,6 +277,17 @@ ul li:hover {
   outline: none;
 }
 
+.btn-holder-modal {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-parent .del-btn {
+  background: #e44235;
+  color: white;
+  width: 42px;
+}
+
 @keyframes fade-slide-in {
   from {
     transform: translateY(-5rem);
