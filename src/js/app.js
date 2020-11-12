@@ -23,12 +23,14 @@ const draftEntry = side.querySelector('.draft-entry');
 const sentEntry = side.querySelector('.sent-entry');
 const trashEntry = side.querySelector('.trash-entry');
 
+let currentTag='';
+
 const emailList=[{
     id:'one',
     creator:'John',
     subject:'Need to meet you',
     content:'Hey bud, would need to meet you tomorrow, Would that be possible, Please let me know about it mate',
-    tag:['imp'],
+    tag:'important',
     date:'22 Jan 2020',
     sendList:['John', 'Robert.P']
 },
@@ -37,7 +39,7 @@ const emailList=[{
     creator:'Doe',
     subject:'Meeting fixed',
     content:'Are we having a google hangout meeting or zoom ?',
-    tag:['secret'],
+    tag:'secret',
     date:'22 Jan 2020',
     sendList:['Merlyn', 'Mason']
 },
@@ -46,7 +48,7 @@ const emailList=[{
     creator:'Dravid',
     subject:'Wont be able to come',
     content:'Sorry mate, I have some work tomorrow, Can we have a meeting later on this week',
-    tag:['newsletter'],
+    tag:'news',
     date:'22 Jan 2020',
     sendList:['shawn', 'michael']
 },
@@ -95,8 +97,6 @@ class Email {
                let item = document.createElement('div');
 
                let addresser = x.sendList.join(', ');
-               console.log(addresser)
-               
                item.classList='email-item'
                let i = 'item-'+ x.id 
                item.classList.add(i)
@@ -114,13 +114,13 @@ class Email {
                {
                 let tagger = item.querySelector('.tag-holder');
                 let  para = document.createElement('p');
-                   switch (x.tag[0])
+                   switch (x.tag)
                    {
-                    case 'imp':
+                    case 'important':
                        para.classList='tag-p-imp';
                        tagger.append(para)
                         break;
-                    case 'book':
+                    case 'random':
                         para.classList='tag-p-book';
                        tagger.append(para)
                         break;
@@ -132,7 +132,7 @@ class Email {
                         para.classList='tag-p-personal';
                         tagger.append(para)
                         break;
-                    case 'newsletter':
+                    case 'news':
                         para.classList='tag-p-newsletter';
                         tagger.append(para)
                         break;
@@ -175,11 +175,10 @@ class Email {
 //functions
 
 let addEmail = (id,creator, subject, content,tag,date,sendList ,listName, countName) => {
+
 let newEmail = new Email(id,creator, subject, content,tag,date,sendList);
 listName.push(newEmail);
 countManager(countName);
-
-console.log(listName);
 }
 
 
@@ -287,8 +286,6 @@ emailListUI.addEventListener('click',(event)=>{
 
 
 composeButton.addEventListener('click',()=>{
-    console.log("open a modal")
-
     let modal = document.createElement('div');
     modal.className='my-modal'
 
@@ -312,8 +309,8 @@ composeButton.addEventListener('click',()=>{
     <div class='tag-buttons'>
 
 
-    <p class='input-imp'></p>
-    <p class='input-rand'></p>
+    <p class='input-important'></p>
+    <p class='input-random'></p>
     <p class='input-work'></p>
     <p class='input-personal'></p>
     <p class='input-secret'></p>
@@ -352,12 +349,28 @@ composeButton.addEventListener('click',()=>{
         modal.remove()
     })
 
+    modal.querySelectorAll('.tag-buttons p').forEach(tagger => {
+
+        tagger.addEventListener('click',(event)=>{
+
+            modal.querySelectorAll('.tag-buttons p').forEach(item => item.classList.remove('active-tag-elem'));
+            currentTag = event.target.className.split('-')[1];
+            
+            event.target.classList.add('active-tag-elem');
+
+
+        })
+    })
+
 
 
 
 
 
 })
+
+
+
 
 function formChecker(myModal,listName,countListName)
 {
@@ -369,7 +382,10 @@ function formChecker(myModal,listName,countListName)
     if(name.trim().length !== 0  && subject.trim().length !== 0 && txtarea.trim().length !== 0 )
     {
         let sendList = name.split(',')
-        addEmail(ID(),'Bunty', subject, txtarea,[],new Date(),sendList,listName,countListName);
+
+     
+
+        addEmail(ID(),'Bunty', subject, txtarea,currentTag,new Date(),sendList,listName,countListName);
         myModal.remove();
     }
 }

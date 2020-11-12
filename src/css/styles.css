@@ -360,11 +360,15 @@ ul li:hover {
   transform: scale(2.1);
 }
 
-.input-imp {
+.active-tag-elem {
+  transform: scale(2.1);
+}
+
+.input-important {
   background-color: #33b587;
 }
 
-.input-rand {
+.input-random {
   background-color: #09aeec;
 }
 
