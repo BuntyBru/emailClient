@@ -15,6 +15,13 @@ const emailListUI = document.querySelector('#mid');
 const emailShowUI = document.querySelector('#right')
 const composeButton = document.querySelector('.compose-btn');
 
+const side = document.querySelector('#side');
+
+const inboxEntry = side.querySelector('.inbox-entry');
+const draftEntry = side.querySelector('.draft-entry');
+const sentEntry = side.querySelector('.sent-entry');
+const trashEntry = side.querySelector('.trash-entry');
+
 
 
 const emailList=[{
@@ -47,6 +54,8 @@ const emailList=[{
 ]
 
 const sentEmail=[];
+const draftEmail=[];
+const trashEmail=[];
 
 
 
@@ -141,10 +150,58 @@ console.log(sentEmail);
 
 let initialize = () => {
     //set up maillist
-    Email.showEmails()
+    Email.showEmails();
+    countManager('inboxList');
 
 }
 
+let countManager = (item) =>{
+    let t = document.createElement('span')
+    switch(item)
+    {
+        case 'inboxList':
+            t.textContent = emailList.length;
+            if(inboxEntry.firstChild)
+            {
+                inboxEntry.removeChild(inboxEntry.firstChild);
+            }
+            inboxEntry.append(t);
+            break;
+        
+        case 'sentList':
+            t.textContent = sentEmail.length;
+            if(sentEntry.firstChild)
+            {
+                sentEntry.removeChild(sentEntry.firstChild);
+            }
+           
+            sentEntry.append(t);
+
+            break;
+        
+        case 'draftList':
+            t.textContent = draftEmail.length;
+            if(draftEntry.firstChild)
+            {
+                draftEntry.removeChild(draftEntry.firstChild)
+            }
+            draftEntry.append(t);
+            break;
+        
+        case 'trashList':
+            t.textContent = trashEmail.length;
+            if(trashEntry.firstChild)
+            {
+                trashEntry.removeChild(trashEntry.firstChild)
+            }
+            trashEntry.append(t);
+            break;
+
+    }
+
+
+    //increase the count of mails in each section
+}
 
 let showMailFull = (item) => {
 
@@ -223,11 +280,15 @@ composeButton.addEventListener('click',()=>{
         let subject = modal.querySelector('#subject').value;
         let txtarea = modal.querySelector('#txt-area').value;
 
+        console.log("====>",txtarea.trim().length , subject.trim().length )
 
-        if(name.trim() !== "" || subject.trim() !== "" || txtarea.trim() !== "" )
+
+        if(name.trim().length !== 0  && subject.trim().length !== 0 && txtarea.trim().length !== 0 )
         {
             let sendList = name.split(',')
             addEmail(ID(),'Bunty', subject, txtarea,[],new Date(),sendList);
+            countManager('sentList');
+            modal.remove();
         }
 
         
