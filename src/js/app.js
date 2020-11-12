@@ -30,7 +30,7 @@ const emailList=[{
     content:'Hey bud, would need to meet you tomorrow, Would that be possible, Please let me know about it mate',
     tag:['imp'],
     date:'22 Jan 2020',
-    sendList:['shawn', 'michael']
+    sendList:['John', 'Robert.P']
 },
 {
     id:'two',
@@ -39,7 +39,7 @@ const emailList=[{
     content:'Are we having a google hangout meeting or zoom ?',
     tag:['secret'],
     date:'22 Jan 2020',
-    sendList:['shawn', 'michael']
+    sendList:['Merlyn', 'Mason']
 },
 {
     id:'three',
@@ -55,6 +55,13 @@ const emailList=[{
 const sentEmail=[];
 const draftEmail=[];
 const trashEmail=[];
+
+const importantList=[];
+const randomList=[];
+const workList=[];
+const personalList=[];
+const secretList=[];
+
 
 
 
@@ -75,14 +82,20 @@ class Email {
 
     static showEmails(emailList)
     {
+        
         while (emailListUI.firstChild) {
             emailListUI.removeChild(emailListUI.firstChild);
         }
+
+    
       
        if(emailList.length > 0)
        {
            emailList.forEach(x => {
                let item = document.createElement('div');
+
+               let addresser = x.sendList.join(', ');
+               console.log(addresser)
                
                item.classList='email-item'
                let i = 'item-'+ x.id 
@@ -92,7 +105,7 @@ class Email {
 
                </div>
 
-               <p>${x.creator}</p>
+               <p>${addresser}</p>
                <p>${x.subject}</p>
                <p>${x.content}</p>
                `;
@@ -170,15 +183,7 @@ console.log(listName);
 }
 
 
-let initialize = () => {
-    //set up maillist
-    Email.showEmails(emailList);
-    countManager('inboxList');
-    countManager('sentList');
-    countManager('draftList');
-    countManager('trashList');
 
-}
 
 let countManager = (item) =>{
     let t = document.createElement('span')
@@ -304,6 +309,20 @@ composeButton.addEventListener('click',()=>{
     <div class='btn-holder-modal'>
     <button class='send-btn'>Send</button>
 
+    <div class='tag-buttons'>
+
+
+    <p class='input-imp'></p>
+    <p class='input-rand'></p>
+    <p class='input-work'></p>
+    <p class='input-personal'></p>
+    <p class='input-secret'></p>
+
+    
+
+
+    </div>
+
     <button class='del-btn'> <i class="fa fa-trash" aria-hidden="true"></i></button>
     </div>
    
@@ -332,6 +351,8 @@ composeButton.addEventListener('click',()=>{
 
         modal.remove()
     })
+
+
 
 
 
@@ -387,17 +408,49 @@ listOneLi.forEach(li => {
            
             event.target.classList.add('active-li');
             break;
+        
+        case 'important':
+            Email.showEmails(importantList);
+            event.target.classList.add('active-li');
+            break;
+        
+        case 'random':
+            Email.showEmails(randomList);
+            event.target.classList.add('active-li');
+            break;
+
+        case 'work':
+            Email.showEmails(workList);
+            event.target.classList.add('active-li');
+            break;
+        
+        case 'personal':
+            Email.showEmails(personalList);
+            event.target.classList.add('active-li');
+            break;
+        
+        case 'secret':
+            Email.showEmails(secretList);
+            event.target.classList.add('active-li');
+            break;
               
       }
       
   
   });
-
-  
   })
 
 
 
+
+let initialize = () => {
+    //set up maillist
+    document.querySelector('.inbox').click()
+    countManager('inboxList');
+    countManager('sentList');
+    countManager('draftList');
+    countManager('trashList'); 
+}
 
 
 initialize()

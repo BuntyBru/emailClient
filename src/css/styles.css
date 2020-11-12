@@ -87,6 +87,18 @@ li i {
   flex: 1;
   pointer-events: none;
 }
+
+li .pallete {
+  flex: 1;
+}
+
+li .pallete p {
+  width: 15px;
+  height: 15px;
+  margin-bottom: 0px;
+  border-radius: 100%;
+}
+
 li p {
   margin-top: 0px;
   margin-bottom: 0px;
@@ -327,4 +339,47 @@ ul li:hover {
   font-size: 14px;
   font-weight: 600;
   color: #77808e;
+}
+
+.tag-buttons {
+  display: flex;
+  justify-content: space-around;
+  width: 20%;
+}
+
+.tag-buttons p {
+  width: 15px;
+  height: 15px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.tag-buttons p:hover {
+  transform: scale(2.1);
+}
+
+.input-imp {
+  background-color: #33b587;
+}
+
+.input-rand {
+  background-color: #09aeec;
+}
+
+.input-work {
+  background-color: #9450af;
+}
+
+.input-personal {
+  background-color: #feae02;
+}
+
+.input-secret {
+  background-color: #ec185a;
+}
+
+.trash {
+  margin-bottom: 10rem;
 }
