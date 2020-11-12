@@ -152,6 +152,9 @@ let initialize = () => {
     //set up maillist
     Email.showEmails();
     countManager('inboxList');
+    countManager('sentList');
+    countManager('draftList');
+    countManager('trashList');
 
 }
 
@@ -164,8 +167,13 @@ let countManager = (item) =>{
             if(inboxEntry.firstChild)
             {
                 inboxEntry.removeChild(inboxEntry.firstChild);
+   
             }
-            inboxEntry.append(t);
+            if(emailList.length > 0)
+            {
+                inboxEntry.append(t);
+                
+            }
             break;
         
         case 'sentList':
@@ -173,28 +181,41 @@ let countManager = (item) =>{
             if(sentEntry.firstChild)
             {
                 sentEntry.removeChild(sentEntry.firstChild);
+             
             }
-           
-            sentEntry.append(t);
-
+            if(sentEmail.length > 0)
+            {
+                sentEntry.append(t);
+            }
             break;
         
         case 'draftList':
             t.textContent = draftEmail.length;
             if(draftEntry.firstChild)
             {
-                draftEntry.removeChild(draftEntry.firstChild)
+                draftEntry.removeChild(draftEntry.firstChild);
             }
-            draftEntry.append(t);
+
+            if(draftEmail.length > 0)
+            {
+                draftEntry.append(t);
+            }
+
+
             break;
         
         case 'trashList':
             t.textContent = trashEmail.length;
             if(trashEntry.firstChild)
             {
-                trashEntry.removeChild(trashEntry.firstChild)
+                trashEntry.removeChild(trashEntry.firstChild);
             }
-            trashEntry.append(t);
+
+            if(trashEmail.length > 0 )
+            {
+                trashEntry.append(t);
+            }
+
             break;
 
     }
