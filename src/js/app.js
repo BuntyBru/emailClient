@@ -23,6 +23,14 @@ const draftEntry = side.querySelector('.draft-entry');
 const sentEntry = side.querySelector('.sent-entry');
 const trashEntry = side.querySelector('.trash-entry');
 
+const importantEntry= side.querySelector('.important-entry');
+const randomEntry= side.querySelector('.books-entry');
+const workEntry= side.querySelector('.work-entry');
+const personalEntry= side.querySelector('.personal-entry');
+const secretEntry= side.querySelector('.secret-entry');
+
+
+
 let currentTag='';
 
 const emailList=[{
@@ -80,6 +88,7 @@ class Email {
         this.date = date,
         this.sendList = sendList
     }
+
 
 
     static showEmails(emailList)
@@ -175,10 +184,40 @@ class Email {
 //functions
 
 let addEmail = (id,creator, subject, content,tag,date,sendList ,listName, countName) => {
-
 let newEmail = new Email(id,creator, subject, content,tag,date,sendList);
 listName.push(newEmail);
 countManager(countName);
+
+if(tag !== '')
+{
+    switch(tag)
+    {
+        case 'important':
+            importantList.push(newEmail);
+            countManager(tag);
+            break;
+        
+        case 'random':
+            randomList.push(newEmail);
+            countManager(tag);
+            break;
+        
+        case 'work':
+            workList.push(newEmail);
+            countManager(tag);
+            break;
+        
+        case 'personal':
+            personalList.push(newEmail);
+            countManager(tag);
+            break;
+        
+        case 'secret':
+            secretList.push(newEmail);
+            countManager(tag);
+            break;
+    }
+}
 }
 
 
@@ -242,6 +281,72 @@ let countManager = (item) =>{
                 trashEntry.append(t);
             }
 
+            break;
+
+        case 'important':
+            t.textContent = importantList.length;
+            if(importantEntry.firstChild)
+            {
+                importantEntry.removeChild(importantEntry.firstChild);
+            }
+
+            if(importantList.length >0)
+            {
+                importantEntry.append(t)
+            }
+
+            break;
+
+        case 'random':
+                t.textContent = randomList.length;
+                if(randomEntry.firstChild)
+                {
+                    randomEntry.removeChild(randomEntry.firstChild);
+                }
+    
+                if(randomList.length >0)
+                {
+                    randomEntry.append(t)
+                }
+                break;
+
+        case 'work':
+                    t.textContent = workList.length;
+                    if(workEntry.firstChild)
+                    {
+                        workEntry.removeChild(workEntry.firstChild);
+                    }
+        
+                    if(workList.length >0)
+                    {
+                        workEntry.append(t)
+                    }
+                break;
+        
+        case 'personal':
+                    t.textContent = personalList.length;
+                    if(personalEntry.firstChild)
+                    {
+                        personalEntry.removeChild(personalEntry.firstChild);
+                    }
+        
+                    if(personalList.length >0)
+                    {
+                        personalEntry.append(t)
+                    }
+                break;
+
+        case 'secret':
+                    t.textContent = secretList.length;
+                    if(secretEntry.firstChild)
+                    {
+                        secretEntry.removeChild(secretEntry.firstChild);
+                    }
+        
+                    if(secretList.length >0)
+                    {
+                        secretEntry.append(t)
+                    }
             break;
 
     }
@@ -308,15 +413,11 @@ composeButton.addEventListener('click',()=>{
 
     <div class='tag-buttons'>
 
-
     <p class='input-important'></p>
     <p class='input-random'></p>
     <p class='input-work'></p>
     <p class='input-personal'></p>
     <p class='input-secret'></p>
-
-    
-
 
     </div>
 
@@ -355,17 +456,9 @@ composeButton.addEventListener('click',()=>{
 
             modal.querySelectorAll('.tag-buttons p').forEach(item => item.classList.remove('active-tag-elem'));
             currentTag = event.target.className.split('-')[1];
-            
             event.target.classList.add('active-tag-elem');
-
-
         })
     })
-
-
-
-
-
 
 })
 
@@ -466,6 +559,7 @@ let initialize = () => {
     countManager('sentList');
     countManager('draftList');
     countManager('trashList'); 
+  
 }
 
 
